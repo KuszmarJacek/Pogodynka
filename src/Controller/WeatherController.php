@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Location;
+use App\Repository\LocationRepository;
 use App\Repository\WeatherRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,8 +22,18 @@ class WeatherController extends AbstractController
         ]);
     }
 
-    public function weatherByCountryAndCity(): Response 
+    #[Route('/weather/{country}/{city}', name: 'weather_in_city_and_country')]
+    public function weatherByCountryAndCity(string $country, string $city, LocationRepository $locationRepository): Response
     {
-        return $this->render("weather/countryAndCity.html.twig");
+        $weather = $locationRepository->findBy([
+            "country" => $country,
+            "city" => $city
+        ])[0]->getWeather()->getValues();
+        
+        return $this->render("weather/countryAndCity.html.twig", [
+            "weather" => $weather,
+            "country" => $country,
+            "city" => $city
+        ]);
     }
 }

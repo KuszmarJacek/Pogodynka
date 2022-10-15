@@ -10,6 +10,12 @@
 
 <div class="example-wrapper">
     <h1>Bruh</h1>
+    {% for z in weather %}
+        <li>{{dump(z)}}</li>
+
+    {% endfor %}
+    <h1>{{country}}</h1>
+    <h1>{{city}}</h1>
 
 </div>
 {% endblock %}

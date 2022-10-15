@@ -66,11 +66,9 @@ class WeatherRepository extends ServiceEntityRepository
 //    }
     public function findByLocation(Location $location) {
         return $this->createQueryBuilder('weather')
-            ->where('weather.FK_location = :location')
-            ->setParameter('location', $location)
+            ->where('weather.FK_location = :Location')
+            ->setParameter('Location', $location)
             ->getQuery()
             ->getResult();
     }
-
-    // public function findByCountryAndCity()
 }
