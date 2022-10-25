@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Weather index{% endblock %}
+
+{% block body %}
+    <h1>Weather index</h1>
+    <a href="{{ path('app_location_crud_index') }}">Go to location</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Max_temp</th>
+                <th>Min_temp</th>
+                <th>Pressure</th>
+                <th>Humidity</th>
+                <th>Precipitation</th>
+                <th>Sunny</th>
+                <th>Cloudy</th>
+                <th>Fog</th>
+                <th>Raining</th>
+                <th>Lightning</th>
+                <th>Snow</th>
+                <th>Wind</th>
+                <th>Tornado</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for weather in weather %}
+            <tr>
+                <td>{{ weather.id }}</td>
+                <td>{{ weather.date ? weather.date|date('Y-m-d') : '' }}</td>
+                <td>{{ weather.maxTemp }}</td>
+                <td>{{ weather.minTemp }}</td>
+                <td>{{ weather.pressure }}</td>
+                <td>{{ weather.humidity }}</td>
+                <td>{{ weather.precipitation }}</td>
+                <td>{{ weather.sunny ? 'Yes' : 'No' }}</td>
+                <td>{{ weather.cloudy ? 'Yes' : 'No' }}</td>
+                <td>{{ weather.fog ? 'Yes' : 'No' }}</td>
+                <td>{{ weather.raining ? 'Yes' : 'No' }}</td>
+                <td>{{ weather.lightning ? 'Yes' : 'No' }}</td>
+                <td>{{ weather.snow ? 'Yes' : 'No' }}</td>
+                <td>{{ weather.wind ? 'Yes' : 'No' }}</td>
+                <td>{{ weather.tornado ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_weather_crud_show', {'id': weather.id}) }}">show</a>
+                    {% if is_granted('ROLE_WEATHER_EDIT') %}
+                        <a href="{{ path('app_weather_crud_edit', {'id': weather.id}) }}">edit</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="16">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_weather_crud_new') }}">Create new</a>
+{% endblock %}

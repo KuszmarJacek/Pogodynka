@@ -11,3 +11,7 @@ weather_at_location:
 weather_by_country_and_city:
   path: /weather/{country}/{city}
   controller: App\Controller\WeatherController::weatherByCountryAndCity
+
+admin_index:
+  path: /admin
+  controller: App\Controller\AdminController:index

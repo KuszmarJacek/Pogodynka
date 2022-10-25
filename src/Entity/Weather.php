@@ -16,7 +16,7 @@ class Weather
 
     #[ORM\ManyToOne(inversedBy: 'weather')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?location $FK_location = null;
+    private ?Location $FK_location = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;

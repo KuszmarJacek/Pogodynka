@@ -1,0 +1,14 @@
+App\Entity\Weather:
+  properties:
+    max_temp:
+      - Range:
+          groups: [new, edit]
+          min: -50
+          max: 50
+          notInRangeMessage: You must be between {{ min }} and {{ max }}
+    min_temp:
+      - Range:
+          groups: [new, edit]
+          min: -50
+          max: 50
+          notInRangeMessage: You must be between {{ min }} and {{ max }}
