@@ -12,6 +12,10 @@ weather_by_country_and_city:
   path: /weather/{country}/{city}
   controller: App\Controller\WeatherController::weatherByCountryAndCity
 
+app_logout:
+  path: /logout
+  methods: GET
+
 admin_index:
   path: /admin
   controller: App\Controller\AdminController:index
